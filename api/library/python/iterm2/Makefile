@@ -10,7 +10,7 @@ test-cov: force
 	python3 -m pytest tests/ -v --cov=iterm2 --cov-report=term-missing
 
 install-local: force
-	python3 setup.py install
+	python3 -m pip install .
 
 docs: force
 	cd docs && ./build.sh && open _build/html/index.html
@@ -19,8 +19,7 @@ force:
 
 upload: force
 	rm -f dist/*
-	python3 setup.py bdist_wheel
-	python3 setup.py sdist
+	python3 -m build
 	python3 -m twine upload dist/*
 
 mypy: force

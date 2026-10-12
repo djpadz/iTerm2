@@ -1,0 +1,32 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "iterm2"
+dynamic = ["version"]
+description = "Python interface to iTerm2's scripting API"
+readme = "README.rst"
+requires-python = ">=3.10"
+license = "GPL-2.0-or-later"
+authors = [{ name = "George Nachman", email = "gnachman@gmail.com" }]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3.10",
+]
+dependencies = ["protobuf", "websockets"]
+
+[project.optional-dependencies]
+full = ["pyobjc"]
+
+[project.urls]
+Homepage = "http://github.com/gnachman/iTerm2"
+
+[tool.hatch.version]
+path = "iterm2/_version.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["iterm2"]
+
+[tool.hatch.build.targets.sdist]
+include = ["/iterm2", "/tests", "/README.rst"]
